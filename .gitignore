@@ -1,5 +1,2 @@
 # ignore PDF files
 *.pdf
-
-# ignore Tree-sitter.md
-Tree-sitter.md

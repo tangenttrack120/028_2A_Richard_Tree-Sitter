@@ -25,6 +25,7 @@ tree = parser.parse(fungsi)
 print(tree.root_node)
 """
 
+"""
 # node bernama vs node anonim
 tree_fungsi = parser.parse(fungsi)
 func_node = tree_fungsi.root_node.children[0]
@@ -39,4 +40,13 @@ params_node = func_node.child_by_field_name("parameters")
 for c in params_node.children:
     status = "bernama" if c.is_named else "anonim"
     print(f"  - tipe: {c.type!r:20} | teks: {c.text.decode()!r:15} | {status}")
-    
+"""
+
+# Sengaja menghapus ':' setelah fungsi untuk menimbulkan error
+fungsi_rusak = b"""def sapa(nama)
+    return "Halo " + nama
+"""
+tree_rusak = parser.parse(fungsi_rusak)
+print("Tree dengan sintaks rusak:")
+print(tree_rusak.root_node)
+print("has_error:", tree_rusak.root_node.has_error)
