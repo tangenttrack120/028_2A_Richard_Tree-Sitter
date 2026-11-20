@@ -1,0 +1,10 @@
+; Menangkap nama modul pada statement 'import ...' dan 'from ... import ...'
+(import_statement
+  name: (dotted_name) @modul)
+
+(import_statement
+  name: (aliased_import
+    name: (dotted_name) @modul))
+
+(import_from_statement
+  module_name: [(dotted_name) (relative_import)] @modul)
