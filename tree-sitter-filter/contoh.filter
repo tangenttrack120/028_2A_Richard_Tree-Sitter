@@ -1,0 +1,1 @@
+status in ("open", "pending", "closed") and (priority > 2 or title contains "urgent") and not archived = true

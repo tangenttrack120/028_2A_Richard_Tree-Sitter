@@ -1,0 +1,105 @@
+==================
+perbandingan dasar dengan string, angka, dan boolean
+==================
+
+customer.city = "Bandung" and total >= 150.5 and active = true
+
+---
+
+(query
+  (and_expression
+    left: (and_expression
+      left: (comparison
+        field: (identifier)
+        value: (string))
+      right: (comparison
+        field: (identifier)
+        value: (number)))
+    right: (comparison
+      field: (identifier)
+      value: (boolean))))
+
+==================
+and lebih kuat dari or
+==================
+
+a = 1 or b = 2 and c = 3
+
+---
+
+(query
+  (or_expression
+    left: (comparison
+      field: (identifier)
+      value: (number))
+    right: (and_expression
+      left: (comparison
+        field: (identifier)
+        value: (number))
+      right: (comparison
+        field: (identifier)
+        value: (number)))))
+
+==================
+pengelompokan dengan tanda kurung
+==================
+
+(a = 1 or b = 2) and c = 3
+
+---
+
+(query
+  (and_expression
+    left: (parenthesized
+      (or_expression
+        left: (comparison
+          field: (identifier)
+          value: (number))
+        right: (comparison
+          field: (identifier)
+          value: (number))))
+    right: (comparison
+      field: (identifier)
+      value: (number))))
+
+==================
+negasi dengan not dan boolean
+==================
+
+not archived = false
+
+---
+
+(query
+  (not_expression
+    operand: (comparison
+      field: (identifier)
+      value: (boolean))))
+
+==================
+operator in dengan tiga nilai
+==================
+
+status in ("open", "pending", "closed")
+
+---
+
+(query
+  (in_expression
+    field: (identifier)
+    (string)
+    (string)
+    (string)))
+
+==================
+operator contains untuk pencarian teks
+==================
+
+title contains "invoice"
+
+---
+
+(query
+  (comparison
+    field: (identifier)
+    value: (string)))
